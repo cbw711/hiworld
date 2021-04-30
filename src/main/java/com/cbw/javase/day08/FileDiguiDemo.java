@@ -16,7 +16,42 @@ public class FileDiguiDemo {
         //输出流
 //        f4();
         // 字符输入流
-        f5();
+//        f5();
+        // 字符输出流
+//        f6();
+        f7();
+    }
+
+    private static void f7() {
+//        try (FileWriter fw = new FileWriter("abc.txt")) {
+//            fw.write("i'm back.../n",0,"i'm back.../n".length());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        /*
+            没有关闭fw.close()。
+            不关闭流，数据只保存在缓存区，并未保存到文件
+         */
+        try {
+            FileWriter fw = new FileWriter("abcd.txt");
+            FileReader fr = new FileReader("abc.txt");
+            int len;
+            while ((len=fr.read())!=-1){
+                fw.write(len);
+            }
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void f6() {
+        try (FileWriter fw = new FileWriter(new File(pathname))) {
+            fw.write("i'm back.../n",0,"i'm back.../n".length());
+            fw.write('b');
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void f5() {
