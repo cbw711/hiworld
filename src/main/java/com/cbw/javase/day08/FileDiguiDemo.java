@@ -19,7 +19,29 @@ public class FileDiguiDemo {
 //        f5();
         // 字符输出流
 //        f6();
-        f7();
+//        f7();
+//        f8();
+        f9();
+
+    }
+
+    private static void f9() {
+        try (PrintWriter pw = new PrintWriter(new FileWriter("fw.txt"), true)) {
+            pw.write("good study");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void f8() {
+        try (FileWriter fw = new FileWriter("fw.txt", true)) {
+            fw.write("great");
+            fw.write("\r\n");
+            fw.write("zhen bang");
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void f7() {
@@ -38,7 +60,9 @@ public class FileDiguiDemo {
             int len;
             while ((len=fr.read())!=-1){
                 fw.write(len);
+                fw.flush();
             }
+            fr.close();
             fw.close();
         } catch (IOException e) {
             e.printStackTrace();
